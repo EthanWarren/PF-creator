@@ -133,17 +133,17 @@ def calc_languages() :
     if race == "human" :
         languagestr="common"
     elif race == "half elf" :
-        languagestr="common , elven"
+        languagestr="common elven"
     elif race == "half orc" :
-        languagestr="common , orc"
+        languagestr="common orc"
     elif race == "dwarf" :
-        languagestr="common , dwarven"
+        languagestr="common dwarven"
     elif race == "elf" :
-        languagestr="common , elven"
+        languagestr="common elven"
     elif race == "gnome" :
-        languagestr="common , gnome"
+        languagestr="common gnome"
     elif race == "halfling" :
-        languagestr="common , halfling"
+        languagestr="common halfling"
     document.getElementById("languages").innerHTML=languagestr
 calc_race()
 calc_size() 

@@ -1,7 +1,10 @@
 <html>
 <head>
 <title>Pathfinder RPG Character Sheet</title>
-</head> 
+<script src="http://192.168.0.200/js/jquery.min.js"></script>
+<script src="http://192.168.0.200/js/save.js"></script>
+<script src="http://192.168.0.200/js/load.js"></script>
+</head>
 <body>
 <h1>PathFinder RPG Character Sheet</h1>
 <h2>Basic</h2>
@@ -13,7 +16,7 @@ race<input type ="text" name="race" id="race" value="human"><br/>
 class<input type="text" name="class" id="class" value="fighter"><br/>
 level <input type="text" id="level" value="1"><br/>
 alignment
-<select>
+<select id="alignment">
 <option>lawful good</option>
 <option>neutral good</option>
 <option>chaotic good</option>
@@ -26,7 +29,7 @@ alignment
 </select><br/>
 Size<input type="text" id="size"><br/>
 Deity <input type="text" id="deity"><br/>
-Description<textarea rows="25" columns="25"></textarea><br/>
+Description<textarea rows="25" columns="25" id="description"></textarea><br/>
 <h2>Ability Scores</h2>
 strength<input type="text" value="10" id="strscore"><input type="text" id="strmod"><br/>
 dexterity<input type="text" value="10" id="dexscore"><input type="text" id="dexmod"><br/>
@@ -97,8 +100,8 @@ survival (wis)<br/>ranks<input type="text" value="0" id="survivalranksmod">wis m
 swim (str)<br/>ranks<input type="text" value="0" id="swimranksmod">str modifier<input type="text" id="swimstrmod">other modifiers<input type="text" value="0" id="swimothermods">swim<input type="text" id="swim"><br/>
 use magic device (cha)<br/>ranks<input type="text" value="0" id="use magic deviceranksmod">cha modifier<input type="text" id="use magic devicechamod">other modifiers<input type="text" value="0" id="use magic deviceothermods">use magic device<input type="text" id="use magic device"><br/>
 <h2>Magic</h2>
-spells known <textarea rows="100" columns="100"></textarea><br/>
-spells prepared<textarea rows="100" columns="100"></textarea><br/>
+spells known <textarea rows="100" columns="100" id="spellknown"></textarea><br/>
+spells prepared<textarea rows="100" columns="100" id="spellprep"></textarea><br/>
 domain/specialty school<input type="text" id="specmag"><br/>
 spell save dcs<br/>
 0<input type="text" value="10" id="sd0"><br/>
@@ -112,15 +115,15 @@ spell save dcs<br/>
 8<input type="text" value="10" id="sd8"><br/>
 9<input type="text" value="10" id="sd9"><br/>
 <h2>Other</h2>
-abilities<textarea rows="25" columns="25"></textarea><br/>
-racial traits<textarea rows="25" columns="25"></textarea><br/>
-feats<textarea rows="25" columns="25"></textarea><br/>
+abilities<textarea rows="25" columns="25" id="abilities"></textarea><br/>
+racial traits<textarea rows="25" columns="25" id="racialtraites"></textarea><br/>
+feats<textarea rows="25" columns="25" id="feats"></textarea><br/>
 languages<textarea rows="25" columns="25" id="languages"></textarea><br/>
 <h2>Equipment</h2>
 <h3>Money</h3>
 coins<br/>cp<input type="text" id="cp">sp<input type="text" id="sp">gp<input type="text" id="gp">pp<input type="text" id="pp"><br/>
 <h3>Gear</h3>
-gear<textarea rows="25" columns="25"></textarea>
+gear<textarea rows="25" columns="25" id="geer"></textarea>
 <h3>AC items</h3>
 armour<br/>name<input type="text" id="armourname">armour bonus<input type="text" value="0" id="armourbonus">armour check penalty<input type="text" id="acp">max dex<input type="text" value="10" id="armourmaxdex">spell failure<input type="text" id="armourspellfailure">speed<input type="text" id="armourspeed"><br/>
 shield<br/>name<input type="text" id="shieldname">shield bonus<input type="text" value="0" id="shieldbonus">shield check penalty<input type="text" id="scp">spell failure<input type="text" id="shieldspellfailure"><br/>
@@ -132,6 +135,20 @@ name:bonus<br/>
 <input type="text" id="acn4">:<input type="text" value="0" id="acb4"><br/>
 <h3>Weapons</h3>
 weapon<input type="text" id="melee1"><br/>weapon<input type="text" id="melee2"><br/>weapon<input type="text" id="weapon3"><br/>weapon<input type="text" id="weapon4"><br/>
+<h2>Save</h2>
+name<input type="text" id="name"><br/>
+<button onclick="save()">save</button><br/>
+<h2>Load</h2>
+%for name in data.keys() :
+<a href="#" onclick="loadsheet(&quot;{{!data[name]}}&quot;)">{{name}}</a>
+%end
+<br/>
+</form>
+<form action="http://192.168.0.200/charactersheet" method="post">
+<h2>Delete</h2>
+name<input type="text" name="delname"><br/>
+<input type="submit" name="delsubmit" value="Delete">
+</form>
 </body>
 <script src="http://192.168.0.200/js/calculate.js"></script>
 </html>
